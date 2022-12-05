@@ -13,6 +13,7 @@
         <h1>JOGJA BERWISATA</h1>
         <hr>
         <h3>TAGLINE</h3>
+        <a href="/login"><button>Login</button></a>
         <a href="/register"><button>Register</button></a>
     </div>
     <div>

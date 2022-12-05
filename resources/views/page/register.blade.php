@@ -7,6 +7,22 @@
 
             <form action="/user" method="post" enctype="multipart/form-data">
                 @csrf
+                <!-- JENIS USER -->
+                <label for="R1">User</label>
+                <input class="@error('type') is-invalid @enderror" type="Radio" name="type" value="1" id="R1">
+                <label for="R2">Pesawat</label>
+                <input class="@error('type') is-invalid @enderror" type="Radio" name="type" value="2" id="R2">
+                <label for="R3">Kereta</label>
+                <input class="@error('type') is-invalid @enderror" type="Radio" name="type" value="3" id="R3">
+                <label for="R4">Bus</label>
+                <input class="@error('type') is-invalid @enderror" type="Radio" name="type" value="4" id="R4">
+                <label for="R5">Penyewaan</label>
+                <input class="@error('type') is-invalid @enderror" type="Radio" name="type" value="5" id="R5">
+                @error('type')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
                 <label for="exampleInputEmail1" class="form-label">Name</label>
                 <p style="font-size: 15px; opacity:0.4">Nama Maksimal 60 karakter</p>
                 <div class="mb-3">

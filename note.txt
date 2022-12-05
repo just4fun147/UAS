@@ -1,2 +1,9 @@
 buat database uas
 tinggal migrate aja (php artisan migrate)
+
+user type: 
+    1. user
+    2. maskapai pesawat
+    3. maskapai kereta
+    4. agen bus
+    5. penyewaan kendaraan
