@@ -1,9 +1,10 @@
 buat database uas
 tinggal migrate aja (php artisan migrate)
-terus run seed(php aritsan db:seed) buat bikin database dasar
+terus run seed(php artisan db:seed) buat bikin database dasar
     Kalo ada perubahan database dasar(liat commit):
         1. migrate refresh(php artisan migrate:refresh)
         2. run seed lagi.
+        3. Kalo ada error bas migrate refresh, hapus databasenya dulu terus migrate sama seed ulang
 user type: 
     1. user
     2. maskapai pesawat

@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     public function index(){
-        return view('perpus/page/registerPage', [
-            'title' => 'Register',
-            'active' => 'Register'
-        ]);
+        return redirect('/');
     }
 
     public function store(Request $request){

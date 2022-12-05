@@ -3,8 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Bandara;
+use App\Models\Bus;
+use App\Models\JPesawat;
+use App\Models\Kereta;
 use App\Models\Terminal;
 use App\Models\Kota;
+use App\Models\User;
+use App\Models\Pesawat;
 use App\Models\Stasiun;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,6 +23,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //MASKAPAI PESAWAT
+        User::create([
+            'name' => 'Garuda Indonesia',
+            'email' => 'garuda@gmail.com',
+            'password' => '123',
+            'type' => 2
+        ]);
+        //MASKAPAI KERETA
+        User::create([
+            'name' => 'KAI Indonesia',
+            'email' => 'kai@gmail.com',
+            'password' => '123',
+            'type' => 3
+        ]);
+        //AGEN BUS
+        User::create([
+            'name' => 'EKA',
+            'email' => 'SKENCANA@gmail.com',
+            'password' => '123',
+            'type' => 4
+        ]);
+        //USER
+        User::create([
+            'name' => 'Pandu',
+            'email' => 'pauluswindito1@gmail.com',
+            'password' => '123',
+            'type' => 1
+        ]);
         //KOTA
         Kota::create([
             'name' => 'Yogyakarta'
@@ -178,6 +211,42 @@ class DatabaseSeeder extends Seeder
         Terminal::create([
             'name' => 'TIRTONADI',
             'kota_id' => 6,
+        ]);
+        
+        //PESAWAT
+        Pesawat::create([
+            'name' => 'Garuda Indonesia',
+            'user_id' => 1,
+            'from_id' => 1,
+            'to_id' => 2,
+            'kelas' => 'Ekonomi',
+            'jadwal_keberangkatan' => '2022-12-07',
+            'jam_keberangkatan' => '07.00',
+            'jadwal_tiba' => '2022-12-07',
+            'jam_tiba' => '08.00'
+        ]);
+        //Kereta
+        Kereta::create([
+            'name' => 'Senja Utama',
+            'user_id' => 2,
+            'from_id' => 5,
+            'to_id' => 1,
+            'jadwal_keberangkatan' => '2022-12-07',
+            'jam_keberangkatan' => '07.00',
+            'jadwal_tiba' => '2022-12-07',
+            'jam_tiba' => '08.00'
+        ]);
+
+        //Bus
+        Bus::create([
+            'name' => 'Eka',
+            'user_id' => 3,
+            'from_id' => 4,
+            'to_id' => 6,
+            'jadwal_keberangkatan' => '2022-12-07',
+            'jam_keberangkatan' => '07.00',
+            'jadwal_tiba' => '2022-12-07',
+            'jam_tiba' => '08.00'
         ]);
 
         

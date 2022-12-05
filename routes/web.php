@@ -45,16 +45,21 @@ Route::get('/infowisata', function () {
         "title" => "Info Wisata"
     ]);
 });
-Route::get('/transportasi', function () {
-    return view('/page/transportasi',[
-        "title" => "Transportasi"
-    ]);
-});
 
 
 Route::resource('/user', \App\Http\Controllers\UserController::class);
+Route::controller(\App\Http\Controllers\PesawatController::class)->group(function () {
+    Route::post('/listPesawat', 'index');
+});
 Route::controller(\App\Http\Controllers\LoginController::class)->group(function () {
     Route::get('/login', 'index')->middleware('guest');
     Route::post('/login', 'store');
     Route::post('/logout', 'logout');
+});
+
+Route::controller(\App\Http\Controllers\DashboardController::class)->group(function () {
+    Route::get('/pesawat', 'pesawat');
+    Route::get('/kereta', 'kereta');
+    Route::get('/bus', 'bus');
+    Route::get('/mobil', 'mobil');
 });

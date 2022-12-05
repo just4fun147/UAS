@@ -9,7 +9,15 @@ class Kereta extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name'
+        'name',
+        'user_id',
+        'from_id',
+        'to_id',
+        'kelas',
+        'jadwal_keberangkatan',
+        'jam_keberangkatan',
+        'jadwal_tiba',
+        'jam_tiba'
     ];
     public function getCreatedAttribute(){
         if(!is_null($this->attributes['created_at'])){
