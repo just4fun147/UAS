@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Stasiun extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'kota_id'
+    ];
 }

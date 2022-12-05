@@ -1,5 +1,6 @@
 buat database uas
 tinggal migrate aja (php artisan migrate)
+terus run seed(php aritsan db:seed) buat bikin database dasar
 
 user type: 
     1. user

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Bandara extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'kota_id'
+    ];
 }
