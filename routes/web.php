@@ -18,11 +18,13 @@ Route::get('/', function () {
         "title" => "Home"
     ]);
 });
+
 Route::get('/register', function () {
     return view('/page/register',[
         "title" => "Registrasi"
     ]);
 });
+
 Route::get('/destinasi', function () {
     return view('/page/destinasi',[
         "title" => "Destinasi Wisata"
@@ -50,3 +52,4 @@ Route::get('/transportasi', function () {
 });
 
 Route::resource('/user', \App\Http\Controllers\UserController::class);
+Route::resource('/login', \App\Http\Controllers\LoginController::class);
