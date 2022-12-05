@@ -1,0 +1,2 @@
+buat database uas
+tinggal migrate aja (php artisan migrate)
