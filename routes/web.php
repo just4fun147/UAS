@@ -51,5 +51,10 @@ Route::get('/transportasi', function () {
     ]);
 });
 
+
 Route::resource('/user', \App\Http\Controllers\UserController::class);
-Route::resource('/login', \App\Http\Controllers\LoginController::class);
+Route::controller(\App\Http\Controllers\LoginController::class)->group(function () {
+    Route::get('/login', 'index')->middleware('guest');
+    Route::post('/login', 'store');
+    Route::post('/logout', 'logout');
+});

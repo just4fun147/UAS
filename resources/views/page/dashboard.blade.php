@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,22 +14,14 @@
         <h1>JOGJA BERWISATA</h1>
         <hr>
         <h3>TAGLINE</h3>
-        <!-- UNTUK YANG SUDAH LOGIN -->
-        @auth
-            <p>{{auth()->user()->name}}</p>
-            <form action="/logout" method="post">
-                @csrf
-                <button type="submit" style="border: 0; background-color: #1A374D">
-                    <i class="fa fa-sign-out"></i>
-                    <a style="font-weight:600; font-size:13px; color:#b1d0e0">Logout</a>
-                </button>
-            </form>
-        <!-- UNTUK YANG BELUM LOGIN -->
-        @else
-            <a href="/login"><button>Login</button></a>
-            <a href="/register"><button>Register</button></a>
-        @endauth
-        
+        <p>{{$user}}</p>
+        <form action="/logout" method="post">
+            @csrf
+            <button type="submit" style="border: 0; background-color: #1A374D">
+                <i class="fa fa-sign-out"></i>
+                <a style="font-weight:600; font-size:13px; color:#b1d0e0">Logout</a>
+            </button>
+        </form>
     </div>
     <div>
         <div>
