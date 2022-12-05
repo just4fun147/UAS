@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Bandara;
+use App\Models\Terminal;
 use App\Models\Kota;
 use App\Models\Stasiun;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -115,6 +116,68 @@ class DatabaseSeeder extends Seeder
         Bandara::create([
             'name' => 'JUANDA',
             'kota_id' => 4,
+        ]);
+
+        //Terminal
+        Terminal::create([
+            'name' => 'GIWANGAN',
+            'kota_id' => 1,
+        ]);
+        Terminal::create([
+            'name' => 'GIWANGAN',
+            'kota_id' => 1,
+        ]);
+        Terminal::create([
+            'name' => 'GAMPING',
+            'kota_id' => 1,
+        ]);
+        Terminal::create([
+            'name' => 'SENEN',
+            'kota_id' => 2,
+        ]);
+        Terminal::create([
+            'name' => 'MANGGARAI',
+            'kota_id' => 2,
+        ]);
+        Terminal::create([
+            'name' => 'PULO GADUNG',
+            'kota_id' => 2,
+        ]);
+        Terminal::create([
+            'name' => 'RAGUNAN',
+            'kota_id' => 2,
+        ]);
+        Terminal::create([
+            'name' => 'PULO GEBANG',
+            'kota_id' => 2,
+        ]);
+        Terminal::create([
+            'name' => 'RAWAMANGUN',
+            'kota_id' => 2,
+        ]);
+        Terminal::create([
+            'name' => 'CICAHEUM',
+            'kota_id' => 3,
+        ]);
+        Terminal::create([
+            'name' => 'ANTAPANI',
+            'kota_id' => 3,
+        ]);
+        Terminal::create([
+            'name' => 'PASARTURI',
+            'kota_id' => 4,
+        ]);
+        Terminal::create([
+            'name' => 'WONOKROMO',
+            'kota_id' => 4,
+        ]);
+        Terminal::create([
+            'name' => 'BULUPITU',
+            'kota_id' => 5,
+        ]);
+        Terminal::create([
+            'name' => 'TIRTONADI',
+            'kota_id' => 6,
         ]);
 
         
