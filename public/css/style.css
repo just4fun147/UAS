@@ -1,8 +1,24 @@
-
 .footer{
-    position: absolute;
     bottom: 0;
     width: 100%;
     height: 70px;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"); 
+
+* { 
+    font-family: "Poppins"; 
+}
+
+input{
+    width: 100%;
+}
+
+th{
+    vertical-align: middle;
+}
+td{
+   
+    width: fit-content;
+    vertical-align: middle;
+}
