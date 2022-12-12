@@ -35,16 +35,6 @@
                 </div>
                 @enderror
 
-                <label for="exampleInputEmail1" class="form-label">Jumlah Penumpang</label>
-                <div class="mb-3"> 
-                    <input class="form-control @error('penumpang') is-invalid @enderror" id="penumpang" name="penumpang" aria-describedby="emailHelp" type="number" value="{{ old('penumpang') }}">
-                    @error('penumpang')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-
                 <label for="exampleInputEmail1" class="form-label">Tanggal</label>
                 <div class="mb-3"> 
                     <input class="form-control @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal" type="date" aria-describedby="emailHelp" value="{{ old('tanggal') }}">
@@ -54,16 +44,12 @@
                     </div>
                     @enderror
                 </div>
-
-                <label for="exampleInputEmail1" class="form-label">Kelas</label>
-                <div class="mb-3"> 
-                    <input class="form-control @error('kelas') is-invalid @enderror" id="kelas" name="kelas"  aria-describedby="emailHelp"  value="{{ old('kelas') }}">
-                    @error('kelas')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+                <select name="kelas" id="kelas">
+                    <option value="option_select" disabled selected>Kelas</option>
+                    <option value="1">Ekonomi</option>
+                    <option value="2">Bisnis</option>
+                    <option value="3">First Class</option>
+                </select>   
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary" name="search"
                         style="background-color:#ff4e44;">Search</button>

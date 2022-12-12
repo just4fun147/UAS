@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::apiResource('/pesawats', App\Http\Controllers\PesawatController::class);
+Route::apiResource('/keretas', App\Http\Controllers\KeretaController::class);
+Route::apiResource('/buses', App\Http\Controllers\BusController::class);

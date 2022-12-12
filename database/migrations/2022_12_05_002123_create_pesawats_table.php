@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('from_id')->references('id')->on('kotas');
             $table->foreignId('to_id')->references('id')->on('kotas');
-            $table->string('kelas');
+            $table->integer('kelas');
             $table->date('jadwal_keberangkatan');
             $table->string('jam_keberangkatan');
             $table->date('jadwal_tiba');

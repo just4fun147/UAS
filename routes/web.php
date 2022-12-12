@@ -49,7 +49,8 @@ Route::get('/infowisata', function () {
 
 Route::resource('/user', \App\Http\Controllers\UserController::class);
 Route::controller(\App\Http\Controllers\PesawatController::class)->group(function () {
-    Route::post('/listPesawat', 'index');
+    Route::post('/listPesawat', 'show');
+    Route::post('/addPesawat', 'store');
 });
 Route::controller(\App\Http\Controllers\LoginController::class)->group(function () {
     Route::get('/login', 'index')->middleware('guest');

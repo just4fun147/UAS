@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Pesawat;
+use App\Models\Kereta;
 use App\Models\Kota;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\PesawatResource;
+use App\Http\Resources\KeretaResource;
 
 class PesawatController extends Controller
 {
     public function index(){
-        $pesawat = Pesawat::all();
+        $kereta = Kereta::all();
 
-        if(count($pesawat) > 0){
-            return new PesawatResource(true, 'List Data Pesawat', $pesawat);
+        if(count($kereta) > 0){
+            return new KeretaResource(true, 'List Data Kereta', $kereta);
         }
 
         return response([
@@ -24,14 +24,14 @@ class PesawatController extends Controller
             'data' => null
         ], 400);
     }
-
+    
     public function show(Request $request){
-        $pesawat = Pesawat::where('from_id',$request->keberangkatan)
+        $kereta = Kereta::where('from_id',$request->keberangkatan)
             ->where('to_id',$request->tujuan)
             ->where('jadwal_keberangkatan',$request->tanggal)
             ->where('kelas', $request->kelas)
             ->get();
-            return new PesawatResource(true, 'List Data Pesawat', $pesawat);
+            return new KeretaResource(true, 'List Data Kereta', $kereta);
        }
 
     public function store(Request $request){
@@ -50,7 +50,7 @@ class PesawatController extends Controller
         if($validator->fails()) {
            return response()->json($validator->errors(), 422); 
         }
-        $pesawat = Pesawat::create([ 
+        $kereta = Kereta::create([ 
             'name' => $request->name, 
             'user_id' => $request->user_id, 
             'from_id' => $request->from_id,
@@ -62,28 +62,28 @@ class PesawatController extends Controller
             'jam_tiba' => $request->jam_tiba
         ]);
 
-        return new PesawatResource(true, 'Data Pesawat Berhasil Ditambahkan!', $pesawat);
+        return new KeretaResource(true, 'Data Kereta Berhasil Ditambahkan!', $kereta);
    
     }
     public function destroy($id)
     {
-        $pesawat= Pesawat::find($id);
+        $kereta= Kereta::find($id);
 
-        if(is_null($pesawat)){
+        if(is_null($kereta)){
             return response([
-                'message' => 'Pesawat Tidak Ditemukan',
+                'message' => 'Kereta Tidak Ditemukan',
                 'data' => null
             ], 404);
         }
 
-        if($pesawat->delete()){
+        if($kereta->delete()){
             return response([
-                'message' =>'Delete Pesawat Sukses',
-                'data' => $pesawat
+                'message' =>'Delete Kereta Sukses',
+                'data' => $kereta
             ], 200);
         }
         return response([
-            'message' => 'Delete Pesawat Gagal',
+            'message' => 'Delete Kereta Gagal',
             'data' => null
         ], 400);
     }
