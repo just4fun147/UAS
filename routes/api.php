@@ -22,16 +22,17 @@ Route::apiResource('/keretas', App\Http\Controllers\KeretaController::class);
 Route::apiResource('/buses', App\Http\Controllers\BusController::class);
 Route::apiResource('/logins', App\Http\Controllers\LoginController::class);
 Route::apiResource('/registers', App\Http\Controllers\UserController::class);
+Route::apiResource('/verif/{id}', App\Http\Controllers\VerifController::class);
 
-// Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verificationapi.verify');
-// Route::get('email/resend', [VerificationApiController::class, 'resend'])->name('verificationapi.resend');
+Route::get('email/verify/{id}', [EmailController::class, 'verify'])->name('verification.verify');
+Route::get('email/resend', [EmailController::class, 'resend'])->name('verification.resend');
 
-Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-    ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');
+// Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+//     ->middleware(['signed', 'throttle:6,1'])
+//     ->name('verification.verify');
 
-// Resend link to verify email
-Route::post('/email/verify/resend', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth:api', 'throttle:6,1'])->name('verification.send');
+// // Resend link to verify email
+// Route::post('/email/verify/resend', function (Request $request) {
+//     $request->user()->sendEmailVerificationNotification();
+//     return back()->with('message', 'Verification link sent!');
+// })->middleware(['auth:api', 'throttle:6,1'])->name('verification.send');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail; 
+use App\Mail\NotifMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\UserResource;
@@ -26,7 +28,14 @@ class UserController extends Controller
         $validatedData['password'] = bcrypt($request->password);
         
         $user = User::create($validatedData);
-        event(new Registered($user));
+        $id = "$user->id";
+        $body = [
+            'name' => $user['name'],
+            'url' => 'http:localhost:8000/api/verif/'.$id ,
+        ];
+            Mail::to($request->email)->send(new NotifMail($body));
+         
+        
         return new userResource(true, 'Registrasi Sukses', $user);
     }
     public function store(Request $request){
@@ -46,7 +55,12 @@ class UserController extends Controller
         $validatedData['password'] = bcrypt($request->password);
         
         $user = User::create($validatedData);
-        event(new Registered($user));
+        $id = "$user->id";
+        $body = [
+            'name' => $user['name'],
+            'url' => 'http:localhost:8000/api/verif/'.$id ,
+        ];
+        Mail::to($request->email)->send(new NotifMail($body));
         return new userResource(true, 'Registrasi Sukses', $user);
     }
     
