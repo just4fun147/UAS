@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\PesawatResource;
+use App\Models\User;
 
 class PesawatController extends Controller
 {
