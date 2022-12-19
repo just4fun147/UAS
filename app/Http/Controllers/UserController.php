@@ -5,20 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Resources\UserResource;
+use Illuminate\Auth\Events\Registered;
 class UserController extends Controller
 {
-    public function index(){
-        return redirect('/');
-    }
 
-    public function store(Request $request){
-        
+    public function index(Request $request){
         $validatedData = $request->validate([
             'name' => 'max:60|not_regex:/^(admin)$/i',
             'email' => 'required|email:rfc,dns|unique:users',
             'password' => 'required|min:6|regex:/^.*(?=.{4,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
-            'image' => 'required|image|file|max:2048|mimes:jpg,png,jpeg',
+            'image' => 'image|file|max:2048|mimes:jpg,png,jpeg',
             'type' => 'required'
         ]);
         if( $request->hasFile('image')) {
@@ -28,8 +25,29 @@ class UserController extends Controller
 
         $validatedData['password'] = bcrypt($request->password);
         
-        User::create($validatedData);
-        return redirect('/login')->with('success', 'Pendaftaran Berhasil! Silahkan Masuk Untuk Melanjutkan');
+        $user = User::create($validatedData);
+        event(new Registered($user));
+        return new userResource(true, 'Registrasi Sukses', $user);
+    }
+    public function store(Request $request){
+        
+        $validatedData = $request->validate([
+            'name' => 'max:60|not_regex:/^(admin)$/i',
+            'email' => 'required|email:rfc,dns|unique:users',
+            'password' => 'required|min:6|regex:/^.*(?=.{4,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+            'image' => 'image|file|max:2048|mimes:jpg,png,jpeg',
+            'type' => 'required'
+        ]);
+        if( $request->hasFile('image')) {
+            $path = $request->file('image')->store('user-images');
+            $validatedData['image'] =$path;
+        }
+
+        $validatedData['password'] = bcrypt($request->password);
+        
+        $user = User::create($validatedData);
+        event(new Registered($user));
+        return new userResource(true, 'Registrasi Sukses', $user);
     }
     
     public function update(Request $request, $id){
@@ -66,12 +84,13 @@ class UserController extends Controller
         }
 
         $user->save();
-        return redirect('/profile');
+        return new userResource(true, 'Update User Sukses', $user);
 
     }
 
     public function destroy($id){
+        $user = User::find($id);
         User::destroy($id);
-        return redirect('/profile');
+        return new userResource(true, 'Delete User Sukses', $user);
     }
 }
