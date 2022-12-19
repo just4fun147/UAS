@@ -44,13 +44,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123aA!'),
             'type' => 4
         ]);
-        //USER
-        User::create([
-            'name' => 'Pandu',
-            'email' => 'pauluswindito1@gmail.com',
-            'password' => bcrypt('123aA!'),
-            'type' => 1
-        ]);
         //KOTA
         Kota::create([
             'name' => 'Yogyakarta'

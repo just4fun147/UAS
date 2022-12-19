@@ -22,7 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'image',
         'type'
     ];
 
@@ -56,4 +55,5 @@ class User extends Authenticatable implements MustVerifyEmail
             return Carbon::parse($this->attributes['update_at'])->format('Y-m-d H:i:s');
         }
     }
+    
 }

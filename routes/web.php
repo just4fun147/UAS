@@ -14,53 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('/page/index',[
-        "title" => "Home"
-    ]);
+    return view('welcome');
 });
 
-Route::get('/register', function () {
-    return view('/page/register',[
-        "title" => "Registrasi"
-    ]);
-});
+Auth::routes(['verify' => true]);
 
-Route::get('/destinasi', function () {
-    return view('/page/destinasi',[
-        "title" => "Destinasi Wisata"
-    ]);
-});
-Route::get('/kuliner', function () {
-    return view('/page/kuliner',[
-        "title" => "Kuliner"
-    ]);
-});
-Route::get('/event', function () {
-    return view('/page/event',[
-        "title" => "Event"
-    ]);
-});
-Route::get('/infowisata', function () {
-    return view('/page/infowisata',[
-        "title" => "Info Wisata"
-    ]);
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::resource('/user', \App\Http\Controllers\UserController::class);
-Route::controller(\App\Http\Controllers\PesawatController::class)->group(function () {
-    Route::post('/listPesawat', 'show');
-    Route::post('/addPesawat', 'store');
-});
-Route::controller(\App\Http\Controllers\LoginController::class)->group(function () {
-    Route::get('/login', 'index')->middleware('guest');
-    Route::post('/login', 'store');
-    Route::post('/logout', 'logout');
-});
-
-Route::controller(\App\Http\Controllers\DashboardController::class)->group(function () {
-    Route::get('/pesawat', 'pesawat');
-    Route::get('/kereta', 'kereta');
-    Route::get('/bus', 'bus');
-    Route::get('/mobil', 'mobil');
-});
