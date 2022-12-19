@@ -12,11 +12,19 @@ use App\Http\Resources\KeretaResource;
 
 class KeretaController extends Controller
 {
-    public function index(){
-        $kereta = Kereta::all();
+    public function index(Request $request){
+        if($request->from_id == null){
+            $kereta = Kereta::all();
+        }else{
+            $kereta = Kereta::where('from_id',$request->from_id)
+                ->where('to_id',$request->to_id)
+                ->where('jadwal_keberangkatan',$request->jadwal_keberangkatan)
+                ->where('kelas', $request->kelas)
+                ->get();
+        }
 
         if(count($kereta) > 0){
-            return new KeretaResource(true, 'List Data Kereta', $kereta);
+            return new keretaResource(true, 'List Data Kerata', $kereta);
         }
 
         return response([
@@ -24,15 +32,6 @@ class KeretaController extends Controller
             'data' => null
         ], 400);
     }
-    
-    public function show(Request $request){
-        $kereta = Kereta::where('from_id',$request->keberangkatan)
-            ->where('to_id',$request->tujuan)
-            ->where('jadwal_keberangkatan',$request->tanggal)
-            ->where('kelas', $request->kelas)
-            ->get();
-            return new KeretaResource(true, 'List Data Kereta', $kereta);
-       }
 
     public function store(Request $request){
         $validator = Validator::make($request->all(), [

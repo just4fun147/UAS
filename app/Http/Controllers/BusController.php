@@ -12,8 +12,16 @@ use App\Http\Resources\BusResource;
 
 class BusController extends Controller
 {
-    public function index(){
-        $bus = Bus::all();
+    public function index(Request $request){
+        if($request->from_id == null){
+            $bus = Bus::all();
+        }else{
+            $bus = Bus::where('from_id',$request->from_id)
+                ->where('to_id',$request->to_id)
+                ->where('jadwal_keberangkatan',$request->jadwal_keberangkatan)
+                ->where('kelas', $request->kelas)
+                ->get();
+        }
 
         if(count($bus) > 0){
             return new busResource(true, 'List Data bus', $bus);
@@ -25,14 +33,6 @@ class BusController extends Controller
         ], 400);
     }
     
-    public function show(Request $request){
-        $bus = Bus::where('from_id',$request->keberangkatan)
-            ->where('to_id',$request->tujuan)
-            ->where('jadwal_keberangkatan',$request->tanggal)
-            ->where('kelas', $request->kelas)
-            ->get();
-            return new busResource(true, 'List Data bus', $bus);
-       }
 
     public function store(Request $request){
         $validator = Validator::make($request->all(), [

@@ -12,11 +12,19 @@ use App\Http\Resources\PesawatResource;
 
 class PesawatController extends Controller
 {
-    public function index(){
-        $pesawat = Pesawat::all();
+    public function index(Request $request){
+        if($request->from_id == null){
+            $pesawat = Pesawat::all();
+        }else{
+            $pesawat = Pesawat::where('from_id',$request->from_id)
+                ->where('to_id',$request->to_id)
+                ->where('jadwal_keberangkatan',$request->jadwal_keberangkatan)
+                ->where('kelas', $request->kelas)
+                ->get();
+        }
 
         if(count($pesawat) > 0){
-            return new PesawatResource(true, 'List Data Pesawat', $pesawat);
+            return new pesawatResource(true, 'List Data Pesawat', $pesawat);
         }
 
         return response([
