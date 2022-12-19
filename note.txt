@@ -11,8 +11,8 @@ bagian env yg email di ganti:
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
-MAIL_USERNAME=pauluswindito1@gmail.com
-MAIL_PASSWORD=jrzocrazzmwkkxrg
+MAIL_USERNAME=traveltoria5@gmail.com
+MAIL_PASSWORD=eqxkhyblrhanqvvz
 MAIL_ENCRYPTION=ssl
 MAIL_FROM_ADDRESS="verification@traveltoria.com"
 MAIL_FROM_NAME="Traveltoria"
