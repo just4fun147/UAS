@@ -107,4 +107,9 @@ class UserController extends Controller
         User::destroy($id);
         return new userResource(true, 'Delete User Sukses', $user);
     }
+
+    public function show($id){
+        $user = User::find($id);
+        return new userResource(true, 'User Ditemukan Sukses', $user);
+    }
 }
