@@ -12,7 +12,11 @@ use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 class VerifController extends Controller
 {
-    public function index($id){
+    public function index(){
+        return view('welcome');
+    }
+    
+    public function store($id){
         $user = User::find($id);
         if(!$user->email_verified_at){
             $date = Carbon::parse()->format('Y-m-d H:i:s');
@@ -23,8 +27,7 @@ class VerifController extends Controller
         $user->save();
         return new userResource(true, 'Verifikasi Sukses', $user);
     }
-    
-    public function store($id){
+    public function verif($id){
         $user = User::find($id);
         if(!$user->email_verified_at){
             $date = Carbon::parse()->format('Y-m-d H:i:s');

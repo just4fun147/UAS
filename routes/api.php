@@ -23,7 +23,8 @@ Route::apiResource('/keretas', App\Http\Controllers\KeretaController::class);
 Route::apiResource('/buses', App\Http\Controllers\BusController::class);
 Route::apiResource('/logins', App\Http\Controllers\LoginController::class);
 Route::apiResource('/registers', App\Http\Controllers\UserController::class);
-Route::post('verif/{$id}', [App\Http\Controllers\VerifController::class, 'verif']);
+Route::apiResource('/verif', App\Http\Controllers\VerifController::class);
+Route::post('/verif/{id}', [App\Http\Controllers\VerifController::class, 'store']);
 
 Route::get('email/verify/{id}', [EmailController::class, 'verify'])->name('verification.verify');
 Route::get('email/resend', [EmailController::class, 'resend'])->name('verification.resend');
