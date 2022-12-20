@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,12 +28,14 @@ Route::apiResource('/verif/{id}', App\Http\Controllers\VerifController::class);
 Route::get('email/verify/{id}', [EmailController::class, 'verify'])->name('verification.verify');
 Route::get('email/resend', [EmailController::class, 'resend'])->name('verification.resend');
 
-// Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-//     ->middleware(['signed', 'throttle:6,1'])
-//     ->name('verification.verify');
+Route::post('ticketKereta/{id}', [App\Http\Controllers\TicketController::class, 'kereta']);
+Route::post('ticketPesawat/{id}', [App\Http\Controllers\TicketController::class, 'pesawat']);
+Route::post('ticketBus/{id}', [App\Http\Controllers\TicketController::class, 'bus']);
 
-// // Resend link to verify email
-// Route::post('/email/verify/resend', function (Request $request) {
-//     $request->user()->sendEmailVerificationNotification();
-//     return back()->with('message', 'Verification link sent!');
-// })->middleware(['auth:api', 'throttle:6,1'])->name('verification.send');
+Route::post('ticketKereta', [App\Http\Controllers\TicketController::class, 'storeKereta']);
+Route::post('ticketPesawat', [App\Http\Controllers\TicketController::class, 'storePesawat']);
+Route::post('ticketBus', [App\Http\Controllers\TicketController::class, 'storeBus']);
+
+Route::post('ticketKeretas/{id}', [App\Http\Controllers\TicketController::class, 'destroyKereta']);
+Route::post('ticketPesawats/{id}', [App\Http\Controllers\TicketController::class, 'destroyPesawat']);
+Route::post('ticketBuss/{id}', [App\Http\Controllers\TicketController::class, 'destroyBus']);
