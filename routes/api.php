@@ -23,7 +23,7 @@ Route::apiResource('/keretas', App\Http\Controllers\KeretaController::class);
 Route::apiResource('/buses', App\Http\Controllers\BusController::class);
 Route::apiResource('/logins', App\Http\Controllers\LoginController::class);
 Route::apiResource('/registers', App\Http\Controllers\UserController::class);
-Route::apiResource('/verif/{id}', App\Http\Controllers\VerifController::class);
+Route::post('verif/{$id}', [App\Http\Controllers\VerifController::class, 'verif']);
 
 Route::get('email/verify/{id}', [EmailController::class, 'verify'])->name('verification.verify');
 Route::get('email/resend', [EmailController::class, 'resend'])->name('verification.resend');
@@ -36,6 +36,6 @@ Route::post('ticketKereta', [App\Http\Controllers\TicketController::class, 'stor
 Route::post('ticketPesawat', [App\Http\Controllers\TicketController::class, 'storePesawat']);
 Route::post('ticketBus', [App\Http\Controllers\TicketController::class, 'storeBus']);
 
-Route::post('ticketKeretas/{id}', [App\Http\Controllers\TicketController::class, 'destroyKereta']);
-Route::post('ticketPesawats/{id}', [App\Http\Controllers\TicketController::class, 'destroyPesawat']);
-Route::post('ticketBuss/{id}', [App\Http\Controllers\TicketController::class, 'destroyBus']);
+Route::delete('ticketKeretas/{id}', [App\Http\Controllers\TicketController::class, 'destroyKereta']);
+Route::delete('ticketPesawats/{id}', [App\Http\Controllers\TicketController::class, 'destroyPesawat']);
+Route::delete('ticketBus/{id}', [App\Http\Controllers\TicketController::class, 'destroyBus']);
