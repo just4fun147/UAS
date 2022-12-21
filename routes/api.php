@@ -25,6 +25,7 @@ Route::apiResource('/logins', App\Http\Controllers\LoginController::class);
 Route::apiResource('/registers', App\Http\Controllers\UserController::class);
 Route::get('/users/{id}', [App\Http\Controllers\UserController::class, 'show']);
 Route::post('/users/{id}', [App\Http\Controllers\UserController::class, 'update']);
+
 Route::apiResource('/verif', App\Http\Controllers\VerifController::class);
 Route::post('/verif/{id}', [App\Http\Controllers\VerifController::class, 'store']);
 
@@ -42,3 +43,11 @@ Route::post('ticketBus', [App\Http\Controllers\TicketController::class, 'storeBu
 Route::delete('ticketKeretas/{id}', [App\Http\Controllers\TicketController::class, 'destroyKereta']);
 Route::delete('ticketPesawats/{id}', [App\Http\Controllers\TicketController::class, 'destroyPesawat']);
 Route::delete('ticketBus/{id}', [App\Http\Controllers\TicketController::class, 'destroyBus']);
+
+// Route::delete('/pesawats/{id}', [App\Http\Controllers\PesawatController::class, 'destroy']);
+Route::delete('/keretas/{id}', [App\Http\Controllers\KeretasController::class, 'destroy']);
+Route::delete('/buses/{id}', [App\Http\Controllers\BusController::class, 'destroy']);
+
+Route::post('/buses/{id}', [App\Http\Controllers\BusController::class, 'update']);
+Route::post('/keretas/{id}', [App\Http\Controllers\KeretaController::class, 'update']);
+Route::post('/pesawats/{id}', [App\Http\Controllers\PesawatController::class, 'update']);

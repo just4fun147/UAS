@@ -87,4 +87,64 @@ class BusController extends Controller
             'data' => null
         ], 400);
     }
+    public function show($id)
+    {
+        $bus= Bus::find($id);
+
+        if(is_null($bus)){
+            return response([
+                'message' => 'Bus Tidak Ditemukan',
+                'data' => null
+            ], 404);
+        }
+        
+        if($bus->delete()){
+            return response([
+                'message' =>'Delete Bus Sukses',
+                'data' => $bus
+            ], 200);
+        }
+        return response([
+            'message' => 'Delete Bus Gagal',
+            'data' => null
+        ], 400);
+    }
+    
+    public function update(Request $request, $id){
+        $bus = Bus::find($id);
+
+        if(is_null($bus)){
+            return response([
+                'message' => 'Bus Tidak Ditemukan',
+                'data' => null
+            ], 404);
+        }
+
+        if($request->name){
+            $bus->name = $request->name;
+        }
+        if($request->from_id){
+            $bus->from_id = $request->from_id;
+        }
+        if($request->to_id){
+            $bus->to_id = $request->to_id;
+        }
+        if($request->kelas){
+            $bus->kelas = $request->kelas;
+        }
+        if($request->jadwal_keberangkatan){
+            $bus->jadwal_keberangkatan = $request->jadwal_keberangkatan;
+        }
+        if ($request->jam_keberangkatan) {
+            $bus->jam_keberangkatan = $request->jam_keberangkatan;
+        }
+        if ($request->jam_tiba) {
+            $bus->jam_tiba = $request->jam_tiba;
+        }
+        if ($request->jadwal_tiba) {
+            $bus->jadwal_tiba = $request->jadwal_tiba;
+        }
+        $bus->save();
+        return new busResource(true, 'Update Bus Sukses', $bus);
+    }
 }

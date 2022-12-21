@@ -96,4 +96,44 @@ class PesawatController extends Controller
             'data' => null
         ], 400);
     }
+    
+    
+    
+    public function update(Request $request, $id){
+        $pesawat = Pesawat::find($id);
+
+        if(is_null($pesawat)){
+            return response([
+                'message' => 'Pesawat Tidak Ditemukan',
+                'data' => null
+            ], 404);
+        }
+
+        if($request->name){
+            $pesawat->name = $request->name;
+        }
+        if($request->from_id){
+            $pesawat->from_id = $request->from_id;
+        }
+        if($request->to_id){
+            $pesawat->to_id = $request->to_id;
+        }
+        if($request->kelas){
+            $pesawat->kelas = $request->kelas;
+        }
+        if($request->jadwal_keberangkatan){
+            $pesawat->jadwal_keberangkatan = $request->jadwal_keberangkatan;
+        }
+        if ($request->jam_keberangkatan) {
+            $pesawat->jam_keberangkatan = $request->jam_keberangkatan;
+        }
+        if ($request->jam_tiba) {
+            $pesawat->jam_tiba = $request->jam_tiba;
+        }
+        if ($request->jadwal_tiba) {
+            $pesawat->jadwal_tiba = $request->jadwal_tiba;
+        }
+        $pesawat->save();
+        return new pesawatResource(true, 'Update Pesawat Sukses', $pesawat);
+    }
 }

@@ -86,4 +86,65 @@ class KeretaController extends Controller
             'data' => null
         ], 400);
     }
+    
+    public function show($id)
+    {
+        $kereta= Kereta::find($id);
+
+        if(is_null($kereta)){
+            return response([
+                'message' => 'Kereta Tidak Ditemukan',
+                'data' => null
+            ], 404);
+        }
+        
+        if($kereta->delete()){
+            return response([
+                'message' =>'Delete Kereta Sukses',
+                'data' => $kereta
+            ], 200);
+        }
+        return response([
+            'message' => 'Delete Kereta Gagal',
+            'data' => null
+        ], 400);
+    }
+    
+    public function update(Request $request, $id){
+        $kereta = Kereta::find($id);
+
+        if(is_null($kereta)){
+            return response([
+                'message' => 'Kereta Tidak Ditemukan',
+                'data' => null
+            ], 404);
+        }
+
+        if($request->name){
+            $kereta->name = $request->name;
+        }
+        if($request->from_id){
+            $kereta->from_id = $request->from_id;
+        }
+        if($request->to_id){
+            $kereta->to_id = $request->to_id;
+        }
+        if($request->kelas){
+            $kereta->kelas = $request->kelas;
+        }
+        if($request->jadwal_keberangkatan){
+            $kereta->jadwal_keberangkatan = $request->jadwal_keberangkatan;
+        }
+        if ($request->jam_keberangkatan) {
+            $kereta->jam_keberangkatan = $request->jam_keberangkatan;
+        }
+        if ($request->jam_tiba) {
+            $kereta->jam_tiba = $request->jam_tiba;
+        }
+        if ($request->jadwal_tiba) {
+            $kereta->jadwal_tiba = $request->jadwal_tiba;
+        }
+        $kereta->save();
+        return new keretaResource(true, 'Update Kereta Sukses', $kereta);
+    }
 }
