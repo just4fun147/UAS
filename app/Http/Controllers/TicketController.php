@@ -11,12 +11,13 @@ use App\Models\Pesawat;
 use App\Models\Bus;
 use App\Http\Resources\TicketResource;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 
 class TicketController extends Controller
 {
     public function getKereta($id){
-        $ticket = TicketKereta::all()->where('user_id',$id);
+        $ticket = DB::table('ticket_keretas')->where('user_id',$id)->get();
         if(count($ticket) > 0){
             return new ticketResource(true, 'List Data ticket', $ticket);
         }else{
@@ -46,7 +47,7 @@ class TicketController extends Controller
         }
     }
     public function getPesawat($id){
-        $ticket = TicketPesawat::all()->where('user_id',$id);
+        $ticket = DB::table('ticket_pesawats')->where('user_id',$id)->get();
         if(count($ticket) > 0){
             return new ticketResource(true, 'List Data ticket', $ticket);
         }else{
@@ -76,7 +77,7 @@ class TicketController extends Controller
         }
     }
     public function getBus($id){
-        $ticket = TicketBus::all()->where('user_id',$id);
+        $ticket = DB::table('ticket_buses')->where('user_id',$id)->get();
         if(count($ticket) > 0){
             return new ticketResource(true, 'List Data ticket', $ticket);
         }else{
