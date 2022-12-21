@@ -31,7 +31,7 @@ class UserController extends Controller
         $id = "$user->id";
         $body = [
             'name' => $user['name'],
-            'url' => 'http:localhost:8000/api/verif/'.$id ,
+            'url' => 'api.traveltoria.my.id/api/verif/'.$id ,
         ];
             Mail::to($request->email)->send(new NotifMail($body));
          
@@ -53,12 +53,13 @@ class UserController extends Controller
         }
 
         $validatedData['password'] = bcrypt($request->password);
+        $validatedData['verif'] = 0;
         
         $user = User::create($validatedData);
         $id = "$user->id";
         $body = [
             'name' => $user['name'],
-            'url' => 'http:localhost:8000/api/verif/'.$id ,
+            'url' => 'api.traveltoria.my.id/api/verif/'.$id ,
         ];
         Mail::to($request->email)->send(new NotifMail($body));
         return new userResource(true, 'Registrasi Sukses', $user);

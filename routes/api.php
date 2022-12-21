@@ -32,6 +32,14 @@ Route::post('/verif/{id}', [App\Http\Controllers\VerifController::class, 'store'
 Route::get('email/verify/{id}', [EmailController::class, 'verify'])->name('verification.verify');
 Route::get('email/resend', [EmailController::class, 'resend'])->name('verification.resend');
 
+Route::get('ticketKereta/{id}', [App\Http\Controllers\TicketController::class, 'getKereta']);
+Route::get('ticketBus/{id}', [App\Http\Controllers\TicketController::class, 'getBus']);
+Route::get('ticketPesawat/{id}', [App\Http\Controllers\TicketController::class, 'getPesawat']);
+
+Route::post('ticketKereta/lunas/{id}', [App\Http\Controllers\TicketController::class, 'lunasKereta']);
+Route::post('ticketBus/lunas/{id}', [App\Http\Controllers\TicketController::class, 'lunasBus']);
+Route::post('ticketPesawat/lunas/{id}', [App\Http\Controllers\TicketController::class, 'lunasPesawat']);
+
 Route::post('ticketKereta/{id}', [App\Http\Controllers\TicketController::class, 'kereta']);
 Route::post('ticketPesawat/{id}', [App\Http\Controllers\TicketController::class, 'pesawat']);
 Route::post('ticketBus/{id}', [App\Http\Controllers\TicketController::class, 'bus']);
@@ -42,7 +50,7 @@ Route::post('ticketBus', [App\Http\Controllers\TicketController::class, 'storeBu
 
 Route::delete('ticketKeretas/{id}', [App\Http\Controllers\TicketController::class, 'destroyKereta']);
 Route::delete('ticketPesawats/{id}', [App\Http\Controllers\TicketController::class, 'destroyPesawat']);
-Route::delete('ticketBus/{id}', [App\Http\Controllers\TicketController::class, 'destroyBus']);
+Route::delete('ticketBuses/{id}', [App\Http\Controllers\TicketController::class, 'destroyBus']);
 
 // Route::delete('/pesawats/{id}', [App\Http\Controllers\PesawatController::class, 'destroy']);
 Route::delete('/keretas/{id}', [App\Http\Controllers\KeretasController::class, 'destroy']);

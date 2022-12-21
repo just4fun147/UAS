@@ -16,8 +16,13 @@ class TicketPesawat extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'nama',
         'user_id',
-        'pesawat_id',
+        'asal',
+        'tujuan',
+        'jadwal_keberangkatan',
+        'jadwal_tiba',
+        'status'
     ];
 
     /**
