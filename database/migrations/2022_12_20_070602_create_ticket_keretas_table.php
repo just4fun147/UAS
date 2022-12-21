@@ -15,8 +15,13 @@ return new class extends Migration
     {
         Schema::create('ticket_keretas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('kereta_id')->references('id')->on('keretas');
+            $table->foreignId('asal')->references('id')->on('kotas');
+            $table->foreignId('tujuan')->references('id')->on('kotas');
+            $table->string('status');
+            $table->date('jadwal_keberangkatan');
+            $table->date('jadwal_tiba');
             $table->timestamps();
         });
     }

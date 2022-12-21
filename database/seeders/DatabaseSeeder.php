@@ -28,21 +28,24 @@ class DatabaseSeeder extends Seeder
             'name' => 'Garuda Indonesia',
             'email' => 'garuda@gmail.com',
             'password' => bcrypt('123aA!'),
-            'type' => 2
+            'type' => 2,
+            'verif' => 1
         ]);
         //MASKAPAI KERETA
         User::create([
             'name' => 'KAI Indonesia',
             'email' => 'kai@gmail.com',
             'password' => bcrypt('123aA!'),
-            'type' => 3
+            'type' => 2,
+            'verif' => 1
         ]);
         //AGEN BUS
         User::create([
             'name' => 'EKA',
             'email' => 'SKENCANA@gmail.com',
             'password' => bcrypt('123aA!'),
-            'type' => 4
+            'type' => 2,
+            'verif' => 1
         ]);
         //KOTA
         Kota::create([

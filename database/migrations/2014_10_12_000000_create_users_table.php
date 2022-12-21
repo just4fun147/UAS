@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('type');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->integer('verif');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
